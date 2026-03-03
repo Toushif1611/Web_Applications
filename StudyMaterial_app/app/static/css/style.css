@@ -1,0 +1,226 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+main.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+/* Header Styles */
+header {
+    background: linear-gradient(to right, #0062e6, #33aeff);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    padding: 20px;
+    font-size: 2em;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+nav {
+    text-align: center;
+    margin: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ffeb3b;
+}
+
+/* footer Styles */
+footer {
+    background: linear-gradient(to right, #0062e6, #33aeff);
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    margin-top: 60px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* flash message styles */
+.flash.success {color: green;}
+.flash.danger, .flash.warning {color: red;}
+.flash.info {color: blue;}
+
+/* login form styles */
+.login-box {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 40px auto;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 6px;
+}
+
+.btn {
+    padding: 12px 20px;
+    width: 100%;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.note-box, .tasks-box {
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.note-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.note-form input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.note-form.btn {
+    padding: 12px 20px;
+    font-size: 16px;
+}
+
+.note-table, .notes-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.note-table th, .note-table td, .notes-table th, .notes-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.note-table th {
+    background-color: #f2f2f2;
+}
+
+.btn.delete {
+    background-color: #dc3545;
+    color: white;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn.delete:hover {
+    background-color: #c82333;
+}
+
+.badge {
+    padding: 5px 10px;
+    font-weight: bold;
+    color: white;
+    border-radius: 4px;
+}
+
+.badge.pending {
+    background-color: #ffc107;
+}
+
+.badge.done {
+    background-color: #28a745;
+}
+
+.badge.working {
+    background-color: #17a2b8;
+}
+
+.btn.small, .btn-small {
+    padding: 6px 12px;
+    font-size: 12px;
+    border: none;
+    background-color: #6c767d;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn.small:hover, .btn-small:hover {
+    background-color: #5a6268;
+}
+
+.btn.clear {
+    background-color: #dc3545;
+    margin-bottom: 10px;
+}   
+
+.btn.clear:hover {
+    background-color: #c82333;
+}
+
+.login-box a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-box a:hover {
+    text-decoration: underline;
+}

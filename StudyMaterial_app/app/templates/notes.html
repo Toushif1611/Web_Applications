@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Notes{% endblock %}
+
+{% block content %}
+<div class="notes-container">
+    <h2>Your Notes</h2>
+    
+    <div class="add-note">
+        <form method="POST" action="{{ url_for('notes.add_note') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <p>Welcome to the notes page, {{ session.get('username') }}!</p>
+                
+                <br><br>
+                <input type="file" name="file" onchange="alert(this.files[0].name)">
+                <br><br>
+                <button type="submit" class="btn">Add Note</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="notes-list">
+        {% if notes %}
+            <ul>
+            {% for entry in notes %}
+                <li>
+                    {% if entry.is_file %}
+                        <a href="{{ url_for('notes.uploaded_file', filename=entry.object.title) }}">{{ entry.object.title }}</a>
+                    {% else %}
+                        {{ entry.object.title }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+            <form method="POST" action="{{ url_for('notes.clear_notes') }}" style="margin-top:20px;">
+                <button type="submit" class="btn">Clear All Notes</button>
+            </form>
+        {% else %}
+            <p>No notes yet. Add one to get started!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
