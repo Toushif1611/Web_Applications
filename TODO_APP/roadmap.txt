@@ -1,0 +1,11 @@
+1- define features
+    -> app?
+
+2- clean project structure
+
+3- app setup
+4- models
+5- routes
+6- html
+7- css 
+8- database 
