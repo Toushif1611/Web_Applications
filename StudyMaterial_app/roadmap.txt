@@ -1,5 +1,15 @@
 1- define features
-    -> app?
+    home page
+        header
+        about website
+        footer
+    login window/ registration window
+    dashboard screen
+        about user
+        upload notes
+        your notes
+        delete notes
+
 
 2- clean project structure
 

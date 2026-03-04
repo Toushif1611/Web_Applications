@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}About Study Material App{% endblock %}
+
+{% block content %}
+    <h2>About Study Material App</h2>
+    <p>Hello {{ session.get('username', 'Guest') }}!</p>
+    <p>This aplication is designed to help students to manage their study materials effectively.</p>
+    <p>Features include:</p>
+    <ul>
+        <li>Upload and organize notes and files.</li>
+        <li>Easy access to your study materials from anywhere.</li>
+        <li>Secure and private storage for your notes.</li>
+    </ul>
+    <p>Our goal is to provide a simple and efficient way for students to keep track of their study materials and enhance their learning experience.</p>
+
+{% endblock %}

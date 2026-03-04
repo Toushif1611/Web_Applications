@@ -28,7 +28,7 @@ def view_notes():
             'object': n,
             'is_file': os.path.isfile(file_path)
         })
-    return render_template('notes.html', notes=notes)
+    return render_template('dashboard.html', notes=notes)
 
 @notes_bp.route('/add', methods=['POST'])
 def add_note():
@@ -68,6 +68,36 @@ def clear_notes():
     Note.query.delete()
     db.session.commit()
     flash('All notes cleared successfully!', 'success')
+    return redirect(url_for('notes.view_notes'))
+
+
+@notes_bp.route('/delete/<int:note_id>', methods=['POST'])
+def delete_note(note_id):
+    """Remove a single note by its ID. Also delete any associated file.
+
+    The form in the dashboard submits to this endpoint, so that users can
+    clear individual notes instead of nuking the whole table.
+    """
+    if 'username' not in session:
+        flash('Please log in to delete notes.', 'warning')
+        return redirect(url_for('auth.login'))
+
+    note = Note.query.get(note_id)
+    if note is None:
+        flash('Note not found.', 'danger')
+    else:
+        # try removing file with the same name as the title, if it exists
+        file_path = os.path.join(UPLOAD_FOLDER, note.title)
+        if os.path.isfile(file_path):
+            try:
+                os.remove(file_path)
+            except Exception:
+                pass  # ignore any errors deleting the file
+
+        db.session.delete(note)
+        db.session.commit()
+        flash('Note deleted successfully!', 'success')
+
     return redirect(url_for('notes.view_notes'))
 
 

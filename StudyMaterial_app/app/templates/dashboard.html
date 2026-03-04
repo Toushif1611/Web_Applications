@@ -4,13 +4,15 @@
 
 {% block content %}
 <div class="notes-container">
-    <h2>Your Notes</h2>
+    <h2>Dashboard</h2>
+    <p>name : {{ session.get('username') }}</p>
+    <p>email : {{ session.get('email') }}</p>
     
     <div class="add-note">
         <form method="POST" action="{{ url_for('notes.add_note') }}" enctype="multipart/form-data">
             <div class="form-group">
                 <p>Welcome to the notes page, {{ session.get('username') }}!</p>
-                
+                <br>
                 <br><br>
                 <input type="file" name="file" onchange="alert(this.files[0].name)">
                 <br><br>
@@ -21,6 +23,7 @@
 
     <div class="notes-list">
         {% if notes %}
+        <p>Your Notes : </p>
             <ul>
             {% for entry in notes %}
                 <li>
@@ -29,6 +32,10 @@
                     {% else %}
                         {{ entry.object.title }}
                     {% endif %}
+                    <!-- single-delete button -->
+                    <form method="POST" action="{{ url_for('notes.delete_note', note_id=entry.object.id) }}" style="display:inline;">
+                        <button type="submit" class="btn btn-small" style="margin-left:10px;">Delete</button>
+                    </form>
                 </li>
             {% endfor %}
             </ul>

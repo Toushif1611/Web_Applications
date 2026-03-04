@@ -10,6 +10,10 @@ auth_bp = Blueprint('auth', __name__)
 def home():
     return render_template('home.html')
 
+@auth_bp.route('/about')
+def about():
+    return render_template('about.html')
+    
 # Route for user login
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():

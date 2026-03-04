@@ -16,7 +16,7 @@ main.container {
 }
 /* Header Styles */
 header {
-    background: linear-gradient(to right, #0062e6, #33aeff);
+    background: linear-gradient(to right, #754d02, #ffbe3379);
     color: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -25,12 +25,12 @@ header h1 {
     margin: 0;
     padding: 20px;
     font-size: 2em;
-    text-align: center;
+    text-align: left;
     letter-spacing: 1px;
 }
 
 nav {
-    text-align: center;
+    text-align: right;
     margin: 10px;
 }
 
@@ -48,7 +48,7 @@ nav a:hover {
 
 /* footer Styles */
 footer {
-    background: linear-gradient(to right, #0062e6, #33aeff);
+    background: linear-gradient(to right, #df8003, #e79f04);
     color: white;
     text-align: center;
     padding: 15px 0;
@@ -60,6 +60,18 @@ footer {
 footer p {
     margin: 0;
     letter-spacing: 1px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffeb3b;
 }
 
 /* flash message styles */
@@ -118,85 +130,16 @@ footer p {
     background-color: #0056b3;
 }
 
-.note-box, .tasks-box {
-    max-width: 700px;
-    margin: 40px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.note-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
-}
-
-.note-form input[type="text"] {
-    flex: 1;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.note-form.btn {
-    padding: 12px 20px;
-    font-size: 16px;
-}
-
 .note-table, .notes-table {
     width: 100%;
     border-collapse: collapse;
-}
-
-.note-table th, .note-table td, .notes-table th, .notes-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.note-table th {
-    background-color: #f2f2f2;
-}
-
-.btn.delete {
-    background-color: #dc3545;
-    color: white;
-    padding: 6px 12px;
-    font-size: 14px;
-    border-radius: 4px;
-    text-decoration: none;
-}
-
-.btn.delete:hover {
-    background-color: #c82333;
-}
-
-.badge {
-    padding: 5px 10px;
-    font-weight: bold;
-    color: white;
-    border-radius: 4px;
-}
-
-.badge.pending {
-    background-color: #ffc107;
-}
-
-.badge.done {
-    background-color: #28a745;
-}
-
-.badge.working {
-    background-color: #17a2b8;
 }
 
 .btn.small, .btn-small {
     padding: 6px 12px;
     font-size: 12px;
     border: none;
+    width: auto;
     background-color: #6c767d;
     color: white;
     border-radius: 4px;
@@ -207,15 +150,6 @@ footer p {
     background-color: #5a6268;
 }
 
-.btn.clear {
-    background-color: #dc3545;
-    margin-bottom: 10px;
-}   
-
-.btn.clear:hover {
-    background-color: #c82333;
-}
-
 .login-box a {
     color: #007bff;
     text-decoration: none;
@@ -223,4 +157,34 @@ footer p {
 
 .login-box a:hover {
     text-decoration: underline;
+}
+
+.add-note {
+ 
+    padding: 25px;
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+.add-note:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+}
+
+.add-note .form-group .btn {
+    font-size: 18px;
+    font-weight: 500;
+    width: auto;
+}
+
+.add-note .form-group .btn:hover {
+    background-color: #0056b3;
+}
+
+.add-note .form-group input[type="file"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: auto;
 }
