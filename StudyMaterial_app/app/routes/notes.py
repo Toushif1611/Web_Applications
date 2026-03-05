@@ -16,7 +16,7 @@ if not os.path.isdir(UPLOAD_FOLDER):
 @notes_bp.route('/notes')
 def view_notes():
     if 'username' not in session:
-        flash('Please log in to view your notes.', 'warning')
+        flash('Please log in to view Dashboard.', 'warning')
         return redirect(url_for('auth.login'))
 
     raw_notes = Note.query.all()

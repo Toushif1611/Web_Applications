@@ -28,6 +28,8 @@ def login():
             session['user_id'] = user.id
             flash('Login successful!', 'success')
             return redirect(url_for('notes.view_notes'))
+        elif user is None:
+            flash('Username does not exist. Please register first.', 'warning')
         else:
             flash('Invalid credentials. Please try again.', 'danger')
 
@@ -73,3 +75,33 @@ def logout():
     flash('You have been logged out.', 'info')
     return redirect(url_for('auth.login'))
 
+@auth_bp.route('/dashboard')
+def dashboard():
+    if 'username' not in session:
+        flash('Please log in to access the dashboard.', 'warning')
+        return redirect(url_for('auth.login'))
+    
+    return render_template('dashboard.html')
+
+@auth_bp.route('/delete_account', methods=['GET', 'POST'])
+def delete_account():
+    if 'username' not in session:
+        flash('Please log in to delete your account.', 'warning')
+        return redirect(url_for('auth.login'))
+    
+    if request.method == 'POST':
+        user_id = session.get('user_id')
+        user = User.query.get(user_id)
+        
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+            session.pop('username', None)
+            session.pop('user_id', None)
+            flash('Your account has been deleted.', 'info')
+        else:
+            flash('User not found.', 'danger')
+        
+        return redirect(url_for('auth.login'))
+    
+    return render_template('delete_account.html')
