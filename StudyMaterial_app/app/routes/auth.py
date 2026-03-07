@@ -90,18 +90,30 @@ def delete_account():
         return redirect(url_for('auth.login'))
     
     if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
         user_id = session.get('user_id')
         user = User.query.get(user_id)
         
-        if user:
-            db.session.delete(user)
-            db.session.commit()
-            session.pop('username', None)
-            session.pop('user_id', None)
-            flash('Your account has been deleted.', 'info')
-        else:
+        # Verify username and password
+        if not user:
             flash('User not found.', 'danger')
+            return redirect(url_for('auth.delete_account'))
         
+        if user.username != username:
+            flash('Username does not match.', 'danger')
+            return redirect(url_for('auth.delete_account'))
+        
+        if not user.check_password(password):
+            flash('Password is incorrect.', 'danger')
+            return redirect(url_for('auth.delete_account'))
+        
+        # Delete the account
+        db.session.delete(user)
+        db.session.commit()
+        session.pop('username', None)
+        session.pop('user_id', None)
+        flash('Your account has been deleted successfully.', 'info')
         return redirect(url_for('auth.login'))
     
     return render_template('delete_account.html')

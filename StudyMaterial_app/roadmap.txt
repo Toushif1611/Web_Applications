@@ -9,6 +9,8 @@
         upload notes
         your notes
         delete notes
+        all notes
+            course\semester\subject
 
 
 2- clean project structure

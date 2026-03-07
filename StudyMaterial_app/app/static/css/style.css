@@ -235,3 +235,142 @@ nav a:hover i {
     margin-right: 6px;
     width: auto;
 }
+
+/* Dashboard Buttons Styles - VS Code Folder Button Style */
+.dashboard-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 20px 0;
+    padding: 10px 0;
+}
+
+.folder-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.folder-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.folder-btn:active {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.folder-btn .chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    transition: transform 0.2s ease;
+}
+
+.folder-btn[aria-expanded="true"] .chevron {
+    transform: rotate(90deg);
+}
+
+.folder-btn .folder-icon {
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.folder-btn .folder-label {
+    white-space: nowrap;
+}
+
+/* Folder Tree Structure Styles */
+.folder-tree {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 10px 0;
+}
+
+.folder-level-1 {
+    margin-left: 0;
+}
+
+.folder-level-2 {
+    margin-left: 20px;
+    border-left: 1px solid #e0e0e0;
+}
+
+.folder-level-3 {
+    margin-left: 40px;
+    border-left: 1px solid #e0e0e0;
+}
+
+.notes-items {
+    margin-left: 40px;
+    padding: 4px 0;
+}
+
+.note-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    font-size: 13px;
+    color: #333;
+    background-color: transparent;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.note-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.note-icon {
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 24px;
+}
+
+.note-link {
+    color: #007bff;
+    text-decoration: none;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.note-link:hover {
+    text-decoration: underline;
+}
+
+.note-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.delete-note-btn {
+    padding: 2px 6px;
+    font-size: 12px;
+    height: auto;
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.note-item:hover .delete-note-btn {
+    opacity: 1;
+}

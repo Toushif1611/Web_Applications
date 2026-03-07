@@ -20,15 +20,27 @@ def view_notes():
         return redirect(url_for('auth.login'))
 
     raw_notes = Note.query.all()
-    # annotate notes with file existence so template can render links
-    notes = []
+    # Group notes by course > semester > subject
+    notes_by_course = {}
     for n in raw_notes:
         file_path = os.path.join(UPLOAD_FOLDER, n.title)
-        notes.append({
+        note_data = {
             'object': n,
             'is_file': os.path.isfile(file_path)
-        })
-    return render_template('dashboard.html', notes=notes)
+        }
+        course = n.course
+        semester = n.semester
+        subject = n.subject
+        
+        if course not in notes_by_course:
+            notes_by_course[course] = {}
+        if semester not in notes_by_course[course]:
+            notes_by_course[course][semester] = {}
+        if subject not in notes_by_course[course][semester]:
+            notes_by_course[course][semester][subject] = []
+        notes_by_course[course][semester][subject].append(note_data)
+    
+    return render_template('dashboard.html', notes_by_course=notes_by_course)
 
 @notes_bp.route('/add', methods=['POST'])
 def add_note():
@@ -37,7 +49,15 @@ def add_note():
         return redirect(url_for('auth.login'))
     
     title = request.form.get('title') or ''
+    course = request.form.get('course')
+    semester = request.form.get('semester')
+    subject = request.form.get('subject')
     file = request.files.get('file')
+    
+    if not course or not semester or not subject:
+        flash('Course, Semester, and Subject are required.', 'danger')
+        return redirect(url_for('notes.view_notes'))
+    
     if file and file.filename:
         filename = secure_filename(file.filename)
         file.save(os.path.join(UPLOAD_FOLDER, filename))
@@ -46,7 +66,7 @@ def add_note():
             title = filename
     
     if title:
-        new_note = Note(title=title)
+        new_note = Note(title=title, course=course, semester=semester, subject=subject)
         db.session.add(new_note)
         db.session.commit()
         flash('Note added successfully!', 'success')
@@ -100,8 +120,7 @@ def delete_note(note_id):
 
     return redirect(url_for('notes.view_notes'))
 
-
-
-
-
+@notes_bp.route('/allnotes')
+def all_notes():
+    return Note.query.all()
 
