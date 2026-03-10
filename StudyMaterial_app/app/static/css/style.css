@@ -10,11 +10,119 @@ body {
     padding: 20px;
 }
 
+.app-layout{
+    display:flex;
+}
+
+/* Sidebar */
+.sidebar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #222;
+    padding-top: 60px;
+    transition: 0.3s;
+}
+
+.sidebar ul{
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li{
+    padding: 15px;
+}
+
+.sidebar ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+.hide{
+    left: -250px;
+}
+
+.show{
+    left: 0;
+}
+
+.sidebar .btn{
+    width:auto;
+    margin-bottom:15px;
+}
+
+.sidebar button{
+    width:auto;
+    margin-bottom:10px;
+    background:#334155;
+    border:none;
+}
+
+.sidebar button:hover{
+    background:#475569;
+}
+
+.sidebar.hide{
+    transform:translateX(-220px);
+}
+
+.app-name{
+    margin:20px 0;
+    text-align:center;
+}
+
+.sidebar-link{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    border-radius:6px;
+    margin-bottom:10px;
+}
+
+.sidebar-link:hover{
+    background:#334155;
+}
+
+@media (max-width:768px){
+
+.sidebar{
+    transform:translateX(-220px);
+}
+
+.sidebar.show{
+    transform:translateX(0);
+}
+}
+
+.chevron {
+    display:inline-block;
+    transition: transform 0.2s;
+}
+
+.chevron.rotate {
+    transform: rotate(90deg);
+}
+
+/* Main content */
+.main-content{
+    margin-left:240px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.hide + .main-content{
+    margin-left:20px;
+}
+
+
 main.container {
     margin-top: 50px;
     margin-bottom: 50px;
 }
 /* Header Styles */
+
 header {
     background-color: white;
     color: black;
@@ -54,7 +162,15 @@ nav a {
 nav a:hover {
     color: #ffeb3b;
 }
+.header-row{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
 
+.menu-btn{
+    width:auto;
+}
 /* footer Styles */
 footer {
     background: rgb(170, 170, 170);

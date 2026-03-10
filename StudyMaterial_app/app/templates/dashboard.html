@@ -3,128 +3,126 @@
 {% block title %}Notes{% endblock %}
 
 {% block content %}
-<div class="notes-container">
-    <h2>Dashboard</h2>
-    <p>name : {{ session.get('username') }}</p>
-    
-    
-    <div class="dashboard-buttons">
-        <button class="folder-btn" type="button" data-bs-toggle="collapse" data-bs-target="#allNotes" aria-expanded="false" aria-controls="allNotes">
-            <span class="chevron">▶</span>
-            <span class="folder-icon">📁</span>
-            <span class="folder-label">All Notes</span>
-        </button>
-        <button class="folder-btn" type="button" data-bs-toggle="collapse" data-bs-target="#uploadNotes" aria-expanded="false" aria-controls="uploadNotes">
-            <span class="chevron">▶</span>
-            <span class="folder-icon">📁</span>
-            <span class="folder-label">Upload Notes</span>
-        </button>
+<div class="main-content">
+    <div class="notes-container">
+        <h2>Dashboard</h2>
+        <p>name : {{ session.get('username') }}</p>
         
-    </div>
-
-    <div class="collapse" id="uploadNotes">
-        <div class="add-note">
-            <form method="POST" action="{{ url_for('notes.add_note') }}" enctype="multipart/form-data">
-                <div class="form-group">
-                    <p>Upload your notes here, {{ session.get('username') }}!</p>
-                    <br>
-                    <input type="text" name="course" placeholder="Course" required>
-                    <br><br>
-                    <input type="text" name="semester" placeholder="Semester" required>
-                    <br><br>
-                    <input type="text" name="subject" placeholder="Subject" required>
-                    <br><br>
-                    <input type="text" name="title" placeholder="Note Title (optional)">
-                    <br><br>
-                    <input type="file" name="file">
-                    <br><br>
-                    <button type="submit" class="btn btn-primary">Add Note</button>
-                </div>
-            </form>
+        
+        <div class="dashboard-buttons">
+            <button class="folder-btn" type="button" data-bs-toggle="collapse" data-bs-target="#allNotes" aria-expanded="false" aria-controls="allNotes">
+                <span class="chevron">▶</span>
+                <span class="folder-icon">📁</span>
+                <span class="folder-label">All Notes</span>
+            </button>
+            <button class="folder-btn" type="button" data-bs-toggle="collapse" data-bs-target="#uploadNotes" aria-expanded="false" aria-controls="uploadNotes">
+                <span class="chevron">▶</span>
+                <span class="folder-icon">📁</span>
+                <span class="folder-label">Upload Notes</span>
+            </button>
+            
         </div>
-    </div>
 
-    <div class="notes-list">
-        <div class="collapse" id="allNotes">
-            {% if notes_by_course %}
-                <div class="folder-tree">
-                    {% for course, semesters in notes_by_course.items() %}
-                        <div class="folder-level-1">
-                            <button class="folder-btn" type="button" data-bs-toggle="collapse" data-bs-target="#course-{{ loop.index0 }}" aria-expanded="false" aria-controls="course-{{ loop.index0 }}">
-                                <span class="chevron">▶</span>
-                                <span class="folder-icon">📚</span>
-                                <span class="folder-label">{{ course }}</span>
-                            </button>
-                            <div class="collapse" id="course-{{ loop.index0 }}">
-                                {% for semester, subjects in semesters.items() %}
-                                    <div class="folder-level-2">
-                                        <button class="folder-btn" type="button" data-bs-toggle="collapse" data-bs-target="#course-{{ loop.index0 }}-semester-{{ loop.index1 }}" aria-expanded="false" aria-controls="course-{{ loop.index0 }}-semester-{{ loop.index1 }}">
-                                            <span class="chevron">▶</span>
-                                            <span class="folder-icon">📕</span>
-                                            <span class="folder-label">{{ semester }}</span>
-                                        </button>
-                                        <div class="collapse" id="course-{{ loop.index0 }}-semester-{{ loop.index1 }}">
-                                            {% for subject, notes in subjects.items() %}
-                                                <div class="folder-level-3">
-                                                    <button class="folder-btn" type="button" data-bs-toggle="collapse" data-bs-target="#course-{{ loop.index0 }}-semester-{{ loop.index1 }}-subject-{{ loop.index2 }}" aria-expanded="false" aria-controls="course-{{ loop.index0 }}-semester-{{ loop.index1 }}-subject-{{ loop.index2 }}">
-                                                        <span class="chevron">▶</span>
-                                                        <span class="folder-icon">📖</span>
-                                                        <span class="folder-label">{{ subject }}</span>
-                                                    </button>
-                                                    <div class="collapse" id="course-{{ loop.index0 }}-semester-{{ loop.index1 }}-subject-{{ loop.index2 }}">
-                                                        <div class="notes-items">
-                                                            {% for entry in notes %}
-                                                                <div class="note-item">
-                                                                    <span class="note-icon">📄</span>
+        <div class="collapse" id="uploadNotes">
+            <div class="add-note">
+                <form method="POST" action="{{ url_for('notes.add_note') }}" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <p>Upload your notes here, {{ session.get('username') }}!</p>
+                        <br>
+                        <input type="text" name="course" placeholder="Course" required>
+                        <br><br>
+                        <input type="text" name="semester" placeholder="Semester" required>
+                        <br><br>
+                        <input type="text" name="subject" placeholder="Subject" required>
+                        <br><br>
+                        <input type="text" name="title" placeholder="Note Title (optional)">
+                        <br><br>
+                        <input type="file" name="file">
+                        <br><br>
+                        <button type="submit" class="btn btn-primary">Add Note</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-                                                                    {% if entry.is_file %}
-                                                                        <a href="{{ url_for('notes.uploaded_file', filename=entry.object.filename) }}" class="note-link">
-                                                                            {{ entry.object.title }}
-                                                                        </a>
-                                                                    {% else %}
-                                                                        <span class="note-title">{{ entry.object.title }}</span>
-                                                                    {% endif %}
+        <div class="notes-list">
+            <div class="collapse" id="allNotes">
+                {% if notes_by_course %}
+                    <div class="folder-tree">
+                        {% for course, semesters in notes_by_course.items() %}
+                            <div class="folder-level-1">
+                                <button class="folder-btn" type="button" data-bs-toggle="collapse" data-bs-target="#course-{{ loop.index0 }}" aria-expanded="false" aria-controls="course-{{ loop.index0 }}">
+                                    <span class="chevron">▶</span>
+                                    <span class="folder-icon">📚</span>
+                                    <span class="folder-label">{{ course }}</span>
+                                </button>
+                                <div class="collapse" id="course-{{ loop.index0 }}">
+                                    {% for semester, subjects in semesters.items() %}
+                                        <div class="folder-level-2">
+                                            <button class="folder-btn" type="button" data-bs-toggle="collapse" data-bs-target="#course-{{ loop.index0 }}-semester-{{ loop.index1 }}" aria-expanded="false" aria-controls="course-{{ loop.index0 }}-semester-{{ loop.index1 }}">
+                                                <span class="chevron">▶</span>
+                                                <span class="folder-icon">📕</span>
+                                                <span class="folder-label">{{ semester }}</span>
+                                            </button>
+                                            <div class="collapse" id="course-{{ loop.index0 }}-semester-{{ loop.index1 }}">
+                                                {% for subject, notes in subjects.items() %}
+                                                    <div class="folder-level-3">
+                                                        <button class="folder-btn" type="button" data-bs-toggle="collapse" data-bs-target="#course-{{ loop.index0 }}-semester-{{ loop.index1 }}-subject-{{ loop.index2 }}" aria-expanded="false" aria-controls="course-{{ loop.index0 }}-semester-{{ loop.index1 }}-subject-{{ loop.index2 }}">
+                                                            <span class="chevron">▶</span>
+                                                            <span class="folder-icon">📖</span>
+                                                            <span class="folder-label">{{ subject }}</span>
+                                                        </button>
+                                                        <div class="collapse" id="course-{{ loop.index0 }}-semester-{{ loop.index1 }}-subject-{{ loop.index2 }}">
+                                                            <div class="notes-items">
+                                                                {% for entry in notes %}
+                                                                    <div class="note-item">
+                                                                        <span class="note-icon">📄</span>
 
-                                                                    <small>
-                                                                        Uploaded by {{ entry.object.user.username }}
-                                                                        | {{ entry.object.created_at.strftime('%d %b %Y') }}
-                                                                    </small>
-                                                                    
-                                                                    
-                                                                    
-                                                                    {% if session['username'] == 'admin' %}
-                                                                        <form method="POST"
-                                                                            action="{{ url_for('notes.delete_note', note_id=entry.object.id) }}"
-                                                                            style="display:inline;"
-                                                                            onsubmit="return confirm('Are you sure you want to delete this note?');">
+                                                                        {% if entry.is_file %}
+                                                                            <a href="{{ url_for('notes.uploaded_file', filename=entry.object.filename) }}" class="note-link">
+                                                                                {{ entry.object.title }}
+                                                                            </a>
+                                                                        {% else %}
+                                                                            <span class="note-title">{{ entry.object.title }}</span>
+                                                                        {% endif %}
 
-                                                                            <button type="submit" class="btn btn-sm btn-danger delete-note-btn">
-                                                                                delete
-                                                                            </button>
-                                                                        </form>
-                                                                    {% endif %}
-                                                                </div>
-                                                            {% endfor %}
+                                                                        <small>
+                                                                            Uploaded by {{ entry.object.user.username }}
+                                                                            | {{ entry.object.created_at.strftime('%d %b %Y') }}
+                                                                        </small>
+                                                                        
+                                                                        
+                                                                        
+                                                                        {% if session.get('username') == 'admin' %}
+                                                                            <form method="POST" action="{{ url_for('notes.delete_note', note_id=entry.object.id) }}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this note?');">
+                                                                                <button type="submit" class="btn btn-sm btn-danger delete-note-btn">
+                                                                                    delete
+                                                                                </button>
+                                                                            </form>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            {% endfor %}
+                                                {% endfor %}
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                {% if session['username'] == 'admin' %}
-                    <form method="POST" action="{{ url_for('notes.clear_notes') }}" style="margin-top:20px;" onsubmit="return confirm('Are you sure you want to delete ALL notes? This action cannot be undone.');">
-                        <button type="submit" class="btn btn-danger">Clear All Notes</button>
-                    </form>
+                        {% endfor %}
+                    </div>
+                    {% if session.get('username') == 'admin' %}
+                        <form method="POST" action="{{ url_for('notes.clear_notes') }}" style="margin-top:20px;" onsubmit="return confirm('Are you sure you want to delete ALL notes? This action cannot be undone.');">
+                            <button type="submit" class="btn btn-danger">Clear All Notes</button>
+                        </form>
+                    {% endif %}
+                {% else %}
+                    <p>No notes yet. Add one to get started!</p>
                 {% endif %}
-            {% else %}
-                <p>No notes yet. Add one to get started!</p>
-            {% endif %}
+            </div>
         </div>
-    </div>
-</div>
+    </div> <!-- notes-container -->
+</div> <!-- main-content -->
 {% endblock %}
