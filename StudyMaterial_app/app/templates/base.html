@@ -13,11 +13,11 @@
     {% if 'username' in session %}
     <div id="sidebar" class="sidebar hide">
         <ul>
-            <p class="sidebar-title">Study Material App</p>
-            <li><a href="{{ url_for('auth.home') }}"><i class="fas fa-user"></i> Home</a></li>
-            <li><a href="{{ url_for('notes.view_notes') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li><a href="{{ url_for('auth.about') }}"><i class="fas fa-info-circle"></i> About Us</a></li>
-            <li><a href="{{ url_for('auth.logout') }}" onclick="return confirm('Are you sure you want to logout?');"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+           <p class="sidebar-title">Study Material App</p> 
+           <li><a href="{{ url_for('auth.home') }}"><i class="fas fa-user"></i> Home</a></li> 
+           <li><a href="{{ url_for('notes.view_notes') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li> 
+           <li><a href="{{ url_for('auth.about') }}"><i class="fas fa-info-circle"></i> About Us</a></li> 
+           <li> <a href="{{ url_for('auth.logout') }}" onclick="return confirm('Are you sure you want to logout?');"> <i class="fas fa-sign-out-alt"></i> Logout </a> </li>
         </ul>
     </div>
     {% endif %}
@@ -33,13 +33,13 @@
         {% if 'username' not in session %}
         <h1>Study Material App</h1>
         {% endif %}
-        <div class="container header-row">
+        <div class="contain header-row">
             {% if 'username' in session %}
-            <button onclick="toggleSidebar()" class="menu-btn">
+             <!-- Sidebar Button -->
+                <button onclick="toggleSidebar()" class="menu-btn">
                 <i class="fas fa-bars"></i>
-            </button>
+                </button>
             {% endif %}
-
             {% block header_actions %}{% endblock %}
 
             <nav> 
@@ -49,6 +49,19 @@
                 <a href="{{ url_for('auth.login') }}">Login</a> 
                 {% endif %} 
             </nav>
+            {% if 'username' in session %}
+            <div class="header-row">
+                <!-- Search Bar -->
+                {% if session.username %}
+                <form action="/search" method="GET" class="header-search">
+                    <input type="text" name="q" placeholder="Search notes...">
+                    <button type="submit">🔍</button>
+                </form>
+                {% endif %}
+
+            </div>
+
+            {% endif %}
         </div>
     </header>
 

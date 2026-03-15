@@ -12,3 +12,16 @@ document.querySelectorAll(".folder-btn").forEach(btn => {
         chevron.classList.toggle("rotate");
     });
 });
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if(urlParams.get("search")){
+        const notesSection = new bootstrap.Collapse(
+            document.getElementById("allNotes"),
+            {toggle:true}
+        );
+    }
+
+});

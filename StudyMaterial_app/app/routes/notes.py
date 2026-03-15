@@ -25,14 +25,29 @@ def view_notes():
     username = session['username']
     user = User.query.filter_by(username=username).first()
 
+    search = request.args.get('search')
+
     if username == 'admin':
-        raw_notes = Note.query.all()
+        query = Note.query
     else:
         admin = User.query.filter_by(username='admin').first()
 
-        raw_notes = Note.query.filter(
+        query = Note.query.filter(
             or_(Note.user_id == user.id, Note.user_id == admin.id)
-        ).all()
+        )
+
+    # 🔎 SEARCH FILTER
+    if search:
+        query = query.filter(
+            or_(
+                Note.title.ilike(f"%{search}%"),
+                Note.course.ilike(f"%{search}%"),
+                Note.semester.ilike(f"%{search}%"),
+                Note.subject.ilike(f"%{search}%")
+            )
+        )
+
+    raw_notes = query.all()
 
     # Group notes by course > semester > subject
     notes_by_course = {}
@@ -49,15 +64,9 @@ def view_notes():
         semester = n.semester
         subject = n.subject
 
-        if course not in notes_by_course:
-            notes_by_course[course] = {}
-
-        if semester not in notes_by_course[course]:
-            notes_by_course[course][semester] = {}
-
-        if subject not in notes_by_course[course][semester]:
-            notes_by_course[course][semester][subject] = []
-
+        notes_by_course.setdefault(course, {})
+        notes_by_course[course].setdefault(semester, {})
+        notes_by_course[course][semester].setdefault(subject, [])
         notes_by_course[course][semester][subject].append(note_data)
 
     return render_template('dashboard.html', notes_by_course=notes_by_course)
