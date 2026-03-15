@@ -1,492 +1,405 @@
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
+/* ===== General Layout ===== */
+body{
+    margin:0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:#f8f9fa;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+.container{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px;
 }
 
-.app-layout{
-    display:flex;
+main.container{
+    margin:40px auto;
 }
 
-/* Sidebar */
+/* ===== Sidebar ===== */
 .sidebar{
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 250px;
-    height: 100%;
-    background: #222;
-    padding-top: 60px;
-    transition: 0.3s;
-}
-
-.sidebar ul{
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li{
-    padding: 15px;
-}
-
-.sidebar ul li a{
-    color: white;
-    text-decoration: none;
-}
-
-.hide{
-    left: -250px;
-}
-
-.show{
-    left: 0;
-}
-
-.sidebar .btn{
-    width:auto;
-    margin-bottom:15px;
-}
-
-.sidebar button{
-    width:auto;
-    margin-bottom:10px;
-    background:#334155;
-    border:none;
-}
-
-.sidebar button:hover{
-    background:#475569;
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100%;
+    background:#111;
+    padding-top:20px;
+    transition:0.3s;
+    z-index:1000;
 }
 
 .sidebar.hide{
-    transform:translateX(-220px);
+    left:-250px;
 }
 
-.app-name{
-    margin:20px 0;
-    text-align:center;
+.sidebar ul{
+    list-style:none;
+    padding:0;
 }
 
-.sidebar-link{
-    display:block;
+.sidebar ul li{
+    padding:12px 20px;
+}
+
+.sidebar ul li a{
     color:white;
     text-decoration:none;
-    padding:12px;
-    border-radius:6px;
-    margin-bottom:10px;
+    display:block;
 }
 
-.sidebar-link:hover{
-    background:#334155;
+.sidebar ul li a:hover{
+    background:#333;
 }
 
-@media (max-width:768px){
-
-.sidebar{
-    transform:translateX(-220px);
+.sidebar-title{
+    color:white;
+    font-size:18px;
+    text-align:center;
+    margin-bottom:20px;
 }
 
-.sidebar.show{
-    transform:translateX(0);
-}
-}
-
-.chevron {
-    display:inline-block;
-    transition: transform 0.2s;
+/* ===== Header ===== */
+header{
+    background:white;
+    color:black;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
-.chevron.rotate {
-    transform: rotate(90deg);
+.top_container{
+    background:#d8d8d8;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
 }
 
-/* Main content */
-.main-content{
-    margin-left:240px;
-    transition: margin-left 0.3s ease;
+header h1{
+    margin:0;
+    padding:20px;
+    font-size:2em;
 }
 
-.sidebar.hide + .main-content{
-    margin-left:20px;
-}
-
-
-main.container {
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-/* Header Styles */
-
-header {
-    background-color: white;
-    color: black;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.top_container {
-    background-color: #d8d8d8;
-    flex-direction: row;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-}
-
-header h1 {
-    margin: 0;
-    padding: 20px;
-    font-size: 2em;
-    text-align: left;
-    letter-spacing: 1px;
-}
-
-nav {
-    text-align: right;
-    margin: 10px;
-}
-
-nav a {
-    color: black;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-nav a:hover {
-    color: #ffeb3b;
-}
+/* Header row layout */
 .header-row{
     display:flex;
     align-items:center;
-    gap:15px;
+    gap:10px;
+    padding:10px 20px;
 }
 
+/* Menu Button */
 .menu-btn{
     width:auto;
-}
-/* footer Styles */
-footer {
-    background: rgb(170, 170, 170);
-    color: white;
-    text-align: left;
-    padding: 15px 0;
-    font-size: 14px;
-    margin-top: 60px;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    background:none;
+    border:none;
+    color:black;
+    padding:8px 12px;
+    cursor:pointer;
 }
 
-.footer .footer-links {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.menu-btn:hover{
+    background: #ccc;
 }
 
-footer p {
-    margin: 0;
-    letter-spacing: 1px;
+.menu-btn:focus,
+.menu-btn:active{
+    outline:none;
+    box-shadow:none;
 }
 
-footer a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: 500;
-    transition: color 0.3s ease;
+/* Header Action Buttons (Upload / Notes) */
+.header-row .btn{
+    width:auto;
+    padding:8px 14px;
+    font-size:14px;
 }
 
-footer a:hover {
-    color: #ffeb3b;
+/* Navigation */
+nav{
+    margin-left:auto;
 }
 
-/* flash message styles */
-.flash.success {color: green;}
-.flash.danger, .flash.warning {color: red;}
-.flash.info {color: blue;}
-
-/* login form styles */
-.login-box {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 40px auto;
+nav a{
+    color:black;
+    text-decoration:none;
+    margin:0 10px;
+    font-weight:500;
+    transition:0.3s;
 }
 
-.login-box h2 {
-    margin-bottom: 20px;
-    text-align: center;
+nav a:hover{
+    color:#ffeb3b;
 }
 
-.form-group {
-    margin-bottom: 20px;
+/* ===== Footer ===== */
+footer{
+    background:#aaaaaa;
+    color:white;
+    padding:15px 0;
+    margin-top:60px;
+    font-size:14px;
+    box-shadow:0 -2px 8px rgba(0,0,0,0.1);
 }
 
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 6px;
+footer a{
+    color:white;
+    text-decoration:none;
+    font-weight:500;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 6px;
+footer a:hover{
+    color:#ffeb3b;
 }
 
-.btn {
-    padding: 12px 20px;
-    width: 100%;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-
+footer p{
+    margin:0;
 }
 
-.btn:hover {
-    background-color: #0056b3;
+/* ===== Flash Messages ===== */
+.flash.success{color:green;}
+.flash.danger,
+.flash.warning{color:red;}
+.flash.info{color:blue;}
+
+/* ===== Login Form ===== */
+.login-box{
+    background:white;
+    padding:30px;
+    border-radius:8px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    max-width:400px;
+    margin:40px auto;
 }
 
-.note-table, .notes-table {
-    width: 100%;
-    border-collapse: collapse;
+.login-box h2{
+    text-align:center;
+    margin-bottom:20px;
 }
 
-.btn.small, .btn-small {
-    padding: 6px 12px;
-    font-size: 12px;
-    border: none;
-    width: auto;
-    background-color: #6c767d;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
+.form-group{
+    margin-bottom:20px;
 }
 
-.btn.small:hover, .btn-small:hover {
-    background-color: #5a6268;
+.form-group input{
+    width:100%;
+    padding:12px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:4px;
 }
 
-.login-box a {
-    color: #007bff;
-    text-decoration: none;
+/* ===== Buttons ===== */
+.btn{
+    padding:10px 18px;
+    font-size:14px;
+    color:white;
+    background:#007bff;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
 }
 
-.login-box a:hover {
-    text-decoration: underline;
+.btn:hover{
+    background:#0056b3;
 }
 
-.add-note {
-    background: white;
-    border-radius: 8px;
-    padding: 25px;
-    max-width: 700px;
-    margin: 40px auto;
+.btn-small{
+    padding:6px 12px;
+    font-size:12px;
+    background:#6c767d;
 }
 
-.add-note:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-
+.btn-small:hover{
+    background:#5a6268;
 }
 
-.add-note .form-group .btn {
-    font-size: 18px;
-    font-weight: 500;
-    width: auto;
+/* ===== Upload Notes Form ===== */
+.add-note{
+    background:white;
+    border-radius:8px;
+    padding:25px;
+    max-width:600px;
+    margin:30px auto;
 }
 
-.add-note .form-group .btn:hover {
-    background-color: #0056b3;
+.add-note input{
+    width:100%;
+    margin-bottom:12px;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:4px;
 }
 
-.add-note .form-group input[type="file"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: auto;
-}
-/* Icon Styles */
-.main_container a i,
-footer a i {
-    margin-right: 8px;
-    transition: transform 0.3s ease, color 0.3s ease;
+.add-note:hover{
+    box-shadow:0 4px 20px rgba(0,0,0,0.15);
 }
 
-.main_container a:hover i {
-    transform: scale(1.2);
+/* ===== Dashboard ===== */
+
+.main-content{
+    max-width:900px;
+    margin:20px auto;
 }
 
-footer a i {
-    color: inherit;
+/* Header Buttons Container */
+.header-actions{
+    display:flex;
+    gap:10px;
 }
 
-footer a:hover i {
-    transform: scale(1.2);
+/* Folder Tree Layout */
+.folder-tree{
+    margin-top:20px;
 }
 
-nav a i {
-    margin-right: 6px;
+/* Folder Buttons */
+.folder-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 8px;
+    font-size:14px;
+    color:#333;
+    background:transparent;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    width:100%;
+    text-align:left;
 }
 
-nav a:hover i {
-    transform: scale(1.1);
+.folder-btn:hover{
+    background:rgba(0,0,0,0.05);
 }
 
-.container .btn.btn-danger{
-    margin-right: 6px;
-    width: auto;
+/* Chevron Arrow */
+.chevron{
+    width:20px;
+    font-size:12px;
 }
 
-/* Dashboard Buttons Styles - VS Code Folder Button Style */
-.dashboard-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin: 20px 0;
-    padding: 10px 0;
+/* Folder Icons */
+.folder-icon{
+    font-size:16px;
 }
 
-.folder-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 8px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-    background-color: transparent;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    text-align: left;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Folder Levels */
+.folder-level-2{
+    margin-left:20px;
+    border-left:1px solid #e0e0e0;
+    padding-left:10px;
 }
 
-.folder-btn:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+.folder-level-3{
+    margin-left:40px;
+    border-left:1px solid #e0e0e0;
+    padding-left:10px;
 }
 
-.folder-btn:active {
-    background-color: rgba(0, 0, 0, 0.08);
+/* Notes List */
+.notes-items{
+    margin-left:40px;
 }
 
-.folder-btn .chevron {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    transition: transform 0.2s ease;
+/* Individual Note */
+.note-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 8px;
+    font-size:13px;
 }
 
-.folder-btn[aria-expanded="true"] .chevron {
-    transform: rotate(90deg);
+.note-item:hover{
+    background:rgba(0,0,0,0.05);
 }
 
-.folder-btn .folder-icon {
-    font-size: 16px;
-    display: inline-flex;
-    align-items: center;
+/* Note Icon */
+.note-icon{
+    font-size:14px;
 }
 
-.folder-btn .folder-label {
-    white-space: nowrap;
+/* Note Title */
+.note-title{
+    flex:1;
+    font-weight:500;
 }
 
-/* Folder Tree Structure Styles */
-.folder-tree {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 10px 0;
+/* Note Link */
+.note-link{
+    color:#007bff;
+    text-decoration:none;
+    flex:1;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
-.folder-level-1 {
-    margin-left: 0;
+.note-link:hover{
+    text-decoration:underline;
 }
 
-.folder-level-2 {
-    margin-left: 20px;
-    border-left: 1px solid #e0e0e0;
+/* ===== Notes List ===== */
+.notes-items{
+    margin-left:40px;
 }
 
-.folder-level-3 {
-    margin-left: 40px;
-    border-left: 1px solid #e0e0e0;
+.note-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 8px;
+    font-size:13px;
 }
 
-.notes-items {
-    margin-left: 40px;
-    padding: 4px 0;
+.note-item:hover{
+    background:rgba(0,0,0,0.05);
 }
 
-.note-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 8px;
-    font-size: 13px;
-    color: #333;
-    background-color: transparent;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
+.note-link{
+    color:#007bff;
+    text-decoration:none;
+    flex:1;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
-.note-item:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+.note-link:hover{
+    text-decoration:underline;
 }
 
-.note-icon {
-    font-size: 14px;
-    display: inline-flex;
-    align-items: center;
-    margin-left: 24px;
+/* Delete Button */
+.delete-note-btn{
+    padding:2px 6px;
+    font-size:12px;
+    margin-left:8px;
+    opacity:0;
+    transition:opacity 0.2s;
 }
 
-.note-link {
-    color: #007bff;
-    text-decoration: none;
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.note-item:hover .delete-note-btn{
+    opacity:1;
 }
 
-.note-link:hover {
-    text-decoration: underline;
-}
+/* ===== Responsive ===== */
+@media (max-width:768px){
 
-.note-title {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+    .header-row{
+        flex-wrap:wrap;
+    }
 
-.delete-note-btn {
-    padding: 2px 6px;
-    font-size: 12px;
-    height: auto;
-    margin-left: 8px;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
+    nav{
+        width:100%;
+        text-align:center;
+        margin-top:10px;
+    }
 
-.note-item:hover .delete-note-btn {
-    opacity: 1;
+    .sidebar{
+        transform:translateX(-250px);
+    }
+
+    .sidebar.show{
+        transform:translateX(0);
+    }
 }

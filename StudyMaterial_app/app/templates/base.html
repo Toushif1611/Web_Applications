@@ -10,18 +10,17 @@
     
 </head>
 <body>
+    {% if 'username' in session %}
     <div id="sidebar" class="sidebar hide">
         <ul>
+            <p class="sidebar-title">Study Material App</p>
             <li><a href="{{ url_for('auth.home') }}"><i class="fas fa-user"></i> Home</a></li>
-            
-            <li><a href="{{ url_for('notes.view_notes') }}"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="{{ url_for('notes.view_notes') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="{{ url_for('auth.about') }}"><i class="fas fa-info-circle"></i> About Us</a></li>
             <li><a href="{{ url_for('auth.logout') }}" onclick="return confirm('Are you sure you want to logout?');"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-            
-            <li><a href="{{ url_for('auth.login') }}"><i class="fas fa-sin-in-alt"></i> >Login</a></li>
-            
-            <li><a href="{{ url_for('auth.about') }}"><i class="fas fa-about-alt"></i> >About Us</a></li>
         </ul>
     </div>
+    {% endif %}
     
     <header>
         <div class="top_container">
@@ -31,21 +30,23 @@
                 <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
+        {% if 'username' not in session %}
         <h1>Study Material App</h1>
+        {% endif %}
         <div class="container header-row">
             {% if 'username' in session %}
-            <button onclick="toggleSidebar()" class="btn btn-dark menu-btn">
+            <button onclick="toggleSidebar()" class="menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
             {% endif %}
+
+            {% block header_actions %}{% endblock %}
+
             <nav> 
+                {% if 'username' not in session %}
                 <a href="{{ url_for('auth.home') }}">Home</a> 
                 <a href="{{ url_for('auth.about') }}">About Us</a> 
-                {% if 'username' in session %} 
-                    <a href="{{ url_for('notes.view_notes') }}">Dashboard</a> 
-                    <a href="{{ url_for('auth.logout') }}" onclick="return confirm('Are you sure you want to logout?');">Logout</a>
-                 {% else %}
-                    <a href="{{ url_for('auth.login') }}">Login</a> 
+                <a href="{{ url_for('auth.login') }}">Login</a> 
                 {% endif %} 
             </nav>
         </div>
@@ -53,11 +54,11 @@
 
     <main class="container">
         {% with messages = get_flashed_messages(with_categories=True) %}
-           
-            {% for category, message in messages %}
-                <div class="flash {{ category }}">{{ message }}</div>
-            {% endfor %}
-        
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
         {% endwith %}
         {% block content %}
 
@@ -70,7 +71,7 @@
             <p>&copy; 2026 Study Material App</p>
             <a href="{{ url_for('auth.home') }}"><i class="fas fa-home"></i> Home</a><br>
             <a href="{{ url_for('auth.about') }}"><i class="fas fa-info-circle"></i> About Us</a><br>
-            <a href="{{ url_for('notes.view_notes') }}"><i class="fas fa-dashboard"></i> Dashboard</a><br>
+            <a href="{{ url_for('notes.view_notes') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a><br>
             <a href="https://github.com/Toushif1611"><i class="fab fa-github"></i> Github account</a><br>
             <a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin"></i> Linkedin page</a><br>
             <a href="{{ url_for('auth.delete_account') }}" onclick="return confirm('Are you sure you want to delete your account?');"><i class="fas fa-trash-alt"></i> Delete Account</a>
