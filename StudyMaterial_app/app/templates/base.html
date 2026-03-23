@@ -87,6 +87,11 @@
             <a href="{{ url_for('notes.view_notes') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a><br>
             <a href="https://github.com/Toushif1611"><i class="fab fa-github"></i> Github account</a><br>
             <a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin"></i> Linkedin page</a><br>
+            {% if 'username' in session %}
+                <a href="{{ url_for('auth.logout') }}" onclick="return confirm('Are you sure you want to logout?');"> <i class="fas fa-sign-out-alt"></i> Logout </a>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}" onclick="return confirm('Are you sure you want to login?');"> <i class="fas fa-sign-in-alt"></i> Login </a>
+            {% endif %} <br>
             <a href="{{ url_for('auth.delete_account') }}" onclick="return confirm('Are you sure you want to delete your account?');"><i class="fas fa-trash-alt"></i> Delete Account</a>
         </div>
     </footer>
