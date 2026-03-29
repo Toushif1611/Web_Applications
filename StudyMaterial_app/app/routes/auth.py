@@ -41,6 +41,7 @@ def login():
 def register():
     if request.method == 'POST':
         username = request.form.get('username')
+        email_id = request.form.get('email_id')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
 
@@ -57,7 +58,7 @@ def register():
             flash('Username already exists. Please choose another.', 'danger')
             return redirect(url_for('auth.register'))
         
-        new_user = User(username=username)
+        new_user = User(username=username, email_id=email_id)
         new_user.set_password(password)
         db.session.add(new_user)
         db.session.commit()
