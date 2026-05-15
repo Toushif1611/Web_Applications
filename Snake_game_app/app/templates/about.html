@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}About Study Material App{% endblock %}
+
+{% block content %}
+    <h2>About the Snake Game</h2>
+    <p>Hello {{ session.get('username', 'Guest') }}!</p>
+    <p>This application is designed to help players enjoy the classic Snake game.</p>
+    <p>Features include:</p>
+    <ul>
+        <li>Classic Snake gameplay.</li>
+        <li>Easy access to your study materials from anywhere.</li>
+        <li>Secure and private storage for your notes.</li>
+    </ul>
+    <p>Controls:</p>
+    <ul>
+        <li>Use the arrow keys or WASD to move the snake.</li>
+        <li>Press <strong>P</strong> to pause and return to the menu.</li>
+        <li>Press <strong>R</strong> to restart the game.</li>
+        <li>Eat red food blocks to grow. Avoid colliding with your own tail.</li>
+        <li>The game wraps at the edges.</li>
+    </ul>
+    <p>Our goal is to provide a simple and efficient way for players to enjoy the classic Snake game and enhance their gaming experience.</p>
+
+{% endblock %}

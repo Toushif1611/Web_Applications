@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="home-content">
+    <h1>hello! {{ session.get('username', 'Guest') }}</h1>
+    <h2>Welcome to the Snake Game</h2>
+    <p>This is a simple implementation of the classic Snake game.</p>
+</div>
+{% endblock %}

@@ -1,0 +1,256 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg, #0b132b 0%, #1f3a93 100%);
+    color: #eef2ff;
+}
+
+.container {
+    width: min(1200px, 96%);
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+.header-bar, .footer-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+header {
+    background: rgba(10, 25, 60, 0.96);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+nav a, .user-label {
+    color: #dbe7ff;
+    text-decoration: none;
+    margin-left: 16px;
+}
+
+nav a:hover {
+    color: #74c0fc;
+}
+
+.flash {
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.flash.success {
+    background: #1b4332;
+}
+
+.flash.danger {
+    background: #a4161a;
+}
+
+main {
+    min-height: calc(100vh - 170px);
+}
+
+.game-shell {
+    display: flex;
+    justify-content: center;
+    padding: 18px 0;
+}
+
+.game-panel {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    background: rgba(15, 32, 72, 0.96);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+}
+
+.menu-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 15, 41, 0.92);
+    backdrop-filter: blur(8px);
+    z-index: 20;
+}
+
+.menu-card {
+    width: min(540px, 100%);
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(10, 22, 57, 0.98);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    text-align: center;
+}
+
+.menu-card h2 {
+    margin: 0 0 18px;
+    font-size: 2rem;
+    letter-spacing: 0.02em;
+}
+
+.menu-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.menu-btn {
+    width: 100%;
+}
+
+.menu-card .btn-danger {
+    background: #f03e3e;
+    color: #eef2ff;
+}
+
+.scores-panel {
+    margin-top: 10px;
+    padding: 16px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 16px;
+}
+
+.score-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 10px;
+}
+
+.score-row span {
+    color: #c8d6ff;
+}
+
+.score-row strong {
+    font-size: 1rem;
+    color: #eef2ff;
+}
+
+.menu-description {
+    margin: 0;
+    color: #c8d6ff;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+canvas {
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+    background: #020617;
+}
+
+.controls-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.btn {
+    padding: 12px 22px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #0b132b;
+    background: #74c0fc;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    background: #4dabf7;
+}
+
+.btn-secondary {
+    background: #3b5bdb;
+    color: #eef2ff;
+}
+
+.instructions {
+    margin-top: 18px;
+    color: #c8d6ff;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+footer {
+    background: rgba(10, 25, 60, 0.96);
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ===== Login Form ===== */
+.login-box{
+    background:white;
+    color: #0b132b;
+    padding:30px;
+    border-radius:8px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    max-width:400px;
+    margin:40px auto;
+}
+
+.login-box h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group input{
+    width:100%;
+    padding:12px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
